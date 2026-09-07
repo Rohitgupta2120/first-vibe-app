@@ -2,11 +2,49 @@
   box-sizing: border-box;
 }
 
+:root {
+  --page-bg: #f4f4f4;
+  --text: #222;
+  --card-bg: #fff;
+  --card-border: #ddd;
+  --input-border: #bbb;
+  --button-bg: #f9f9f9;
+  --button-border: #bbb;
+  --button-hover-bg: #efefef;
+  --filter-active-bg: #dff0ff;
+  --filter-active-border: #63a4ff;
+  --task-text-complete: #777;
+  --delete-border: #f2a4a4;
+  --delete-bg: #fff1f1;
+  --delete-hover-bg: #ffe3e3;
+  --empty-text: #666;
+  --empty-border: #ccc;
+}
+
+body.dark-mode {
+  --page-bg: #1f2430;
+  --text: #e9edf3;
+  --card-bg: #2b3242;
+  --card-border: #44506a;
+  --input-border: #60708f;
+  --button-bg: #39445c;
+  --button-border: #60708f;
+  --button-hover-bg: #46526d;
+  --filter-active-bg: #345e8f;
+  --filter-active-border: #79b4ff;
+  --task-text-complete: #aeb7c8;
+  --delete-border: #d99292;
+  --delete-bg: #5b3a3a;
+  --delete-hover-bg: #6b4343;
+  --empty-text: #c6cfde;
+  --empty-border: #60708f;
+}
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #f4f4f4;
-  color: #222;
+  background: var(--page-bg);
+  color: var(--text);
 }
 
 #app {
@@ -19,17 +57,28 @@ body {
 .todo-app {
   width: 100%;
   max-width: 520px;
-  background: #fff;
-  border: 1px solid #ddd;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
 h1 {
-  margin: 0 0 16px;
-  text-align: center;
+  margin: 0;
   font-size: 28px;
+}
+
+.theme-toggle {
+  white-space: nowrap;
 }
 
 .task-form {
@@ -41,22 +90,25 @@ h1 {
 #task-input {
   flex: 1;
   padding: 10px;
-  border: 1px solid #bbb;
+  border: 1px solid var(--input-border);
   border-radius: 8px;
   font-size: 16px;
+  background: var(--card-bg);
+  color: var(--text);
 }
 
 button {
-  border: 1px solid #bbb;
-  background: #f9f9f9;
+  border: 1px solid var(--button-border);
+  background: var(--button-bg);
   border-radius: 8px;
   padding: 9px 12px;
   cursor: pointer;
   font-size: 14px;
+  color: var(--text);
 }
 
 button:hover {
-  background: #efefef;
+  background: var(--button-hover-bg);
 }
 
 .filters {
@@ -66,8 +118,8 @@ button:hover {
 }
 
 .filter-btn.active {
-  background: #dff0ff;
-  border-color: #63a4ff;
+  background: var(--filter-active-bg);
+  border-color: var(--filter-active-border);
 }
 
 .task-list {
@@ -83,10 +135,10 @@ button:hover {
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--card-border);
   border-radius: 8px;
   padding: 10px;
-  background: #fff;
+  background: var(--card-bg);
 }
 
 .task-item span {
@@ -96,7 +148,7 @@ button:hover {
 
 .task-item.completed span {
   text-decoration: line-through;
-  color: #777;
+  color: var(--task-text-complete);
 }
 
 .task-actions {
@@ -105,18 +157,18 @@ button:hover {
 }
 
 .delete-btn {
-  border-color: #f2a4a4;
-  background: #fff1f1;
+  border-color: var(--delete-border);
+  background: var(--delete-bg);
 }
 
 .delete-btn:hover {
-  background: #ffe3e3;
+  background: var(--delete-hover-bg);
 }
 
 .empty-message {
   text-align: center;
-  color: #666;
-  border: 1px dashed #ccc;
+  color: var(--empty-text);
+  border: 1px dashed var(--empty-border);
   border-radius: 8px;
   padding: 16px;
 }

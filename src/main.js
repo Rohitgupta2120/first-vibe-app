@@ -4,7 +4,10 @@ const app = document.querySelector('#app')
 
 app.innerHTML = `
   <main class="todo-app">
-    <h1>My To-Do List</h1>
+    <div class="top-bar">
+      <h1>My To-Do List</h1>
+      <button type="button" id="theme-toggle" class="theme-toggle">Dark Mode</button>
+    </div>
 
     <form id="task-form" class="task-form">
       <input
@@ -30,11 +33,17 @@ const taskForm = document.querySelector('#task-form')
 const taskInput = document.querySelector('#task-input')
 const taskList = document.querySelector('#task-list')
 const filterButtons = document.querySelectorAll('.filter-btn')
+const themeToggle = document.querySelector('#theme-toggle')
 
 const STORAGE_KEY = 'todo-tasks'
+const THEME_KEY = 'todo-theme'
 
 let tasks = loadTasks()
 let currentFilter = 'all'
+let theme = loadTheme()
+
+applyTheme()
+updateThemeButton()
 
 renderTasks()
 
@@ -87,6 +96,13 @@ filterButtons.forEach((button) => {
 
     renderTasks()
   })
+})
+
+themeToggle.addEventListener('click', () => {
+  theme = theme === 'dark' ? 'light' : 'dark'
+  saveTheme()
+  applyTheme()
+  updateThemeButton()
 })
 
 function getFilteredTasks() {
@@ -142,6 +158,23 @@ function loadTasks() {
 
 function saveTasks() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks))
+}
+
+function loadTheme() {
+  const savedTheme = localStorage.getItem(THEME_KEY)
+  return savedTheme === 'dark' ? 'dark' : 'light'
+}
+
+function saveTheme() {
+  localStorage.setItem(THEME_KEY, theme)
+}
+
+function applyTheme() {
+  document.body.classList.toggle('dark-mode', theme === 'dark')
+}
+
+function updateThemeButton() {
+  themeToggle.textContent = theme === 'dark' ? 'Light Mode' : 'Dark Mode'
 }
 
 function escapeHtml(value) {
