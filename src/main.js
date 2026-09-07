@@ -5,7 +5,7 @@ const app = document.querySelector('#app')
 app.innerHTML = `
   <main class="todo-app">
     <div class="top-bar">
-      <h1>My Daily To-Do List</h1>
+      <h1>My Awesome Daily To-Do List</h1>
       <button type="button" id="theme-toggle" class="theme-toggle">Dark Mode</button>
     </div>
 
